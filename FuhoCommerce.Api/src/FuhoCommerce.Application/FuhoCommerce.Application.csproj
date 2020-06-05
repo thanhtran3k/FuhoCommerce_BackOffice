@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Behaviours\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FuhoCommerce.Common\FuhoCommerce.CrossCuttingConcern.csproj" />
     <ProjectReference Include="..\FuhoCommerce.Domain\FuhoCommerce.Domain.csproj" />
   </ItemGroup>
