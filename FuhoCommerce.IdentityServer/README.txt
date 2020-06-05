@@ -1,0 +1,1 @@
+Migrate tool in FuhoCommerce.Persistence

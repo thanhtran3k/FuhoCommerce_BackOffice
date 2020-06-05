@@ -1,0 +1,1 @@
+Register service here to inject to Startup.ConfigurationService

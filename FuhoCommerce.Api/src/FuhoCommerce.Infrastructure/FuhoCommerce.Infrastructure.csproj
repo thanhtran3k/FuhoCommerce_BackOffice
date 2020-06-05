@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+	<LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ExternalResource\ExternalApi\" />
+    <Folder Include="ExternalResource\SMTP\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FuhoCommerce.Application\FuhoCommerce.Application.csproj" />
+    <ProjectReference Include="..\FuhoCommerce.Common\FuhoCommerce.CrossCuttingConcern.csproj" />
+  </ItemGroup>
+
+</Project>

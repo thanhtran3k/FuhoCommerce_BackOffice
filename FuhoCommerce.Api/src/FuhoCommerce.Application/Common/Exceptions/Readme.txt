@@ -1,0 +1,1 @@
+Create custom exceptions here like Validation Exception, custom null exception, not found exception
