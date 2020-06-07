@@ -7,7 +7,7 @@ namespace FuhoCommerce.Domain.Entities
 {
     public class Cart : BaseEntity
     {
-        public Guid BuyerCartId { get; set; }
+        public Guid CartId { get; set; }
         public ICollection<Product> Products { get; set; }
     }
 }

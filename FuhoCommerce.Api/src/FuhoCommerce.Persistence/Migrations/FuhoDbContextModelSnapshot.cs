@@ -19,17 +19,11 @@ namespace FuhoCommerce.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.Buyer", b =>
+            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyHistory", b =>
                 {
-                    b.Property<Guid>("BuyerId")
+                    b.Property<Guid>("BuyHistoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Avatar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactPhoneNumber")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -37,41 +31,21 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DateOfBirth")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BuyerId");
+                    b.HasKey("BuyHistoryId");
 
-                    b.ToTable("Buyers");
+                    b.ToTable("BuyHistories");
                 });
 
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerCart", b =>
+            modelBuilder.Entity("FuhoCommerce.Domain.Entities.Cart", b =>
                 {
-                    b.Property<Guid>("BuyerCartId")
+                    b.Property<Guid>("CartId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BuyerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -86,132 +60,9 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BuyerCartId");
+                    b.HasKey("CartId");
 
-                    b.HasIndex("BuyerId")
-                        .IsUnique();
-
-                    b.ToTable("BuyerCarts");
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerComment", b =>
-                {
-                    b.Property<Guid>("BuyerCommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BuyerCommentId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("BuyerComments");
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerHistory", b =>
-                {
-                    b.Property<Guid>("BuyerHistoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BuyerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BuyerHistoryId");
-
-                    b.HasIndex("BuyerId");
-
-                    b.ToTable("BuyerHistories");
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerShippingInfo", b =>
-                {
-                    b.Property<Guid>("BuyerShippingInfoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BuyerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("StreetName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ward")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("BuyerShippingInfoId");
-
-                    b.HasIndex("BuyerId");
-
-                    b.ToTable("BuyerShippingInfos");
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Category", b =>
@@ -246,13 +97,41 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("FuhoCommerce.Domain.Entities.Comment", b =>
+                {
+                    b.Property<Guid>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.FuhoWallet", b =>
                 {
                     b.Property<Guid>("FuhoWalletId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BuyerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -278,8 +157,6 @@ namespace FuhoCommerce.Persistence.Migrations
 
                     b.HasKey("FuhoWalletId");
 
-                    b.HasIndex("BuyerId");
-
                     b.ToTable("FuhoWallets");
                 });
 
@@ -287,9 +164,6 @@ namespace FuhoCommerce.Persistence.Migrations
                 {
                     b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BuyerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -335,8 +209,6 @@ namespace FuhoCommerce.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("BuyerId");
 
                     b.HasIndex("ShipperId");
 
@@ -395,10 +267,10 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("BrandName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("BuyerCartId")
+                    b.Property<Guid?>("BuyHistoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BuyerHistoryId")
+                    b.Property<Guid?>("CartId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CategoryId")
@@ -425,12 +297,6 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("SupplierCategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SupplierId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -439,15 +305,11 @@ namespace FuhoCommerce.Persistence.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("BuyerCartId");
+                    b.HasIndex("BuyHistoryId");
 
-                    b.HasIndex("BuyerHistoryId");
+                    b.HasIndex("CartId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("SupplierCategoryId");
-
-                    b.HasIndex("SupplierId");
 
                     b.ToTable("Products");
                 });
@@ -504,13 +366,16 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.ToTable("Shippers");
                 });
 
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.Supplier", b =>
+            modelBuilder.Entity("FuhoCommerce.Domain.Entities.UserShippingInfo", b =>
                 {
-                    b.Property<Guid>("SupplierId")
+                    b.Property<Guid>("UserShippingInfoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
@@ -519,20 +384,23 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("District")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RatingReceived")
-                        .HasColumnType("int");
+                    b.Property<string>("ShippingAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -540,90 +408,25 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SupplierId");
-
-                    b.ToTable("Suppliers");
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.SupplierCategory", b =>
-                {
-                    b.Property<Guid>("SupplierCategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("Ward")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SupplierCategoryName")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("UserShippingInfoId");
 
-                    b.Property<Guid>("SupplierId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SupplierCategoryId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("SupplierCategories");
+                    b.ToTable("UserShippingInfos");
                 });
 
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerCart", b =>
-                {
-                    b.HasOne("FuhoCommerce.Domain.Entities.Buyer", "Buyer")
-                        .WithOne("BuyerCart")
-                        .HasForeignKey("FuhoCommerce.Domain.Entities.BuyerCart", "BuyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerComment", b =>
+            modelBuilder.Entity("FuhoCommerce.Domain.Entities.Comment", b =>
                 {
                     b.HasOne("FuhoCommerce.Domain.Entities.Product", "Product")
-                        .WithMany("BuyerComments")
+                        .WithMany("Comments")
                         .HasForeignKey("ProductId")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerHistory", b =>
-                {
-                    b.HasOne("FuhoCommerce.Domain.Entities.Buyer", null)
-                        .WithMany("BuyerHistories")
-                        .HasForeignKey("BuyerId");
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.BuyerShippingInfo", b =>
-                {
-                    b.HasOne("FuhoCommerce.Domain.Entities.Buyer", "Buyer")
-                        .WithMany("BuyerShippingInfos")
-                        .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.FuhoWallet", b =>
-                {
-                    b.HasOne("FuhoCommerce.Domain.Entities.Buyer", "Buyer")
-                        .WithMany()
-                        .HasForeignKey("BuyerId");
                 });
 
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("FuhoCommerce.Domain.Entities.Buyer", "Buyer")
-                        .WithMany("Orders")
-                        .HasForeignKey("BuyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FuhoCommerce.Domain.Entities.Shipper", "Shipper")
                         .WithMany("Orders")
                         .HasForeignKey("ShipperId");
@@ -646,27 +449,17 @@ namespace FuhoCommerce.Persistence.Migrations
 
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Product", b =>
                 {
-                    b.HasOne("FuhoCommerce.Domain.Entities.BuyerCart", null)
+                    b.HasOne("FuhoCommerce.Domain.Entities.BuyHistory", null)
                         .WithMany("Products")
-                        .HasForeignKey("BuyerCartId");
+                        .HasForeignKey("BuyHistoryId");
 
-                    b.HasOne("FuhoCommerce.Domain.Entities.BuyerHistory", null)
+                    b.HasOne("FuhoCommerce.Domain.Entities.Cart", null)
                         .WithMany("Products")
-                        .HasForeignKey("BuyerHistoryId");
+                        .HasForeignKey("CartId");
 
                     b.HasOne("FuhoCommerce.Domain.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FuhoCommerce.Domain.Entities.SupplierCategory", null)
-                        .WithMany("Products")
-                        .HasForeignKey("SupplierCategoryId");
-
-                    b.HasOne("FuhoCommerce.Domain.Entities.Supplier", "Supplier")
-                        .WithMany("Products")
-                        .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -676,15 +469,6 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.HasOne("FuhoCommerce.Domain.Entities.Product", "Product")
                         .WithMany("ProductOptions")
                         .HasForeignKey("ProductId");
-                });
-
-            modelBuilder.Entity("FuhoCommerce.Domain.Entities.SupplierCategory", b =>
-                {
-                    b.HasOne("FuhoCommerce.Domain.Entities.Supplier", "Supplier")
-                        .WithMany("SupplierCategories")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

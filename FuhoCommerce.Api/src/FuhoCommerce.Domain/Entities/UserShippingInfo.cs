@@ -11,6 +11,7 @@ namespace FuhoCommerce.Domain.Entities
         {
             ShippingAddress = string.Join(" - ", Number, StreetName, Ward, District, City, Country);
         }
+        public Guid UserShippingInfoId { get; set; }
         public string Number { get; set; }
         public string StreetName { get; set; }
         public string Ward { get; set; }
