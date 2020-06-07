@@ -27,6 +27,12 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -38,8 +44,14 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsSupplier")
-                        .HasColumnType("bit");
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -76,6 +88,9 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<string>("VendorDescription")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -119,24 +134,17 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "863d7074-0939-4d8f-8344-7ed0bb7dea9c",
-                            ConcurrencyStamp = "12cd3aa4-3e53-4329-afd4-78c2d544f1bf",
+                            Id = "8f9452b8-b1b6-40ba-a0ca-8c9266c559b7",
+                            ConcurrencyStamp = "30b3da1d-98ef-4558-bbf5-f26ecbad0bf6",
                             Name = "consumer",
                             NormalizedName = "CONSUMER"
                         },
                         new
                         {
-                            Id = "7e2d466e-a7a2-47a6-885a-41bf4a4f81a2",
-                            ConcurrencyStamp = "d7f85ac4-de13-4901-acb3-30e6f2d7eac2",
-                            Name = "buyer",
-                            NormalizedName = "BUYER"
-                        },
-                        new
-                        {
-                            Id = "81916a81-6768-4307-b7d1-09bc3ff5ca2c",
-                            ConcurrencyStamp = "c30987c7-1fe8-46cd-9ba1-17b0f4fddecd",
-                            Name = "supplier",
-                            NormalizedName = "SUPPLIER"
+                            Id = "ab673726-ea98-4ef6-8cfe-5d41fa1c8bb8",
+                            ConcurrencyStamp = "347fcd7f-aac8-47bb-829a-26bda88efd1f",
+                            Name = "systemadmin",
+                            NormalizedName = "SYSTEMADMIN"
                         });
                 });
 

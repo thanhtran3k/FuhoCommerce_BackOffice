@@ -41,7 +41,12 @@ namespace FuhoCommerce.Persistence.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    IsSupplier = table.Column<bool>(nullable: false)
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Gender = table.Column<string>(nullable: true),
+                    VendorDescription = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -157,17 +162,12 @@ namespace FuhoCommerce.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "863d7074-0939-4d8f-8344-7ed0bb7dea9c", "12cd3aa4-3e53-4329-afd4-78c2d544f1bf", "consumer", "CONSUMER" });
+                values: new object[] { "8f9452b8-b1b6-40ba-a0ca-8c9266c559b7", "30b3da1d-98ef-4558-bbf5-f26ecbad0bf6", "consumer", "CONSUMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "7e2d466e-a7a2-47a6-885a-41bf4a4f81a2", "d7f85ac4-de13-4901-acb3-30e6f2d7eac2", "buyer", "BUYER" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "81916a81-6768-4307-b7d1-09bc3ff5ca2c", "c30987c7-1fe8-46cd-9ba1-17b0f4fddecd", "supplier", "SUPPLIER" });
+                values: new object[] { "ab673726-ea98-4ef6-8cfe-5d41fa1c8bb8", "347fcd7f-aac8-47bb-829a-26bda88efd1f", "systemadmin", "SYSTEMADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuhoCommerce.Persistence.Migrations.PersistedGrantDb
 {
     [DbContext(typeof(PersistedGrantDbContext))]
-    [Migration("20200530204023_PersistedGrantDbMigration")]
+    [Migration("20200607155531_PersistedGrantDbMigration")]
     partial class PersistedGrantDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
