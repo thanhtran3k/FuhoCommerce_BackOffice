@@ -10,20 +10,17 @@ namespace FuhoCommerce.Application.Common.Interfaces
 {
     public interface IFuhoDbContext
     {
-        DbSet<Buyer> Buyers { get; set; }
-        DbSet<BuyerCart> BuyerCarts { get; set; }
-        DbSet<BuyerComment> BuyerComments { get; set; }
-        DbSet<BuyerHistory> BuyerHistories { get; set; }
-        DbSet<BuyerShippingInfo> BuyerShippingInfos { get; set; }
+        DbSet<BuyHistory> BuyHistories { get; set; }
+        DbSet<Cart> Carts { get; set; }
         DbSet<Category> Categories { get; set; }
+        DbSet<Comment> Comments { get; set; }
         DbSet<FuhoWallet> FuhoWallets { get; set; }
         DbSet<Order> Orders { get; set; }
         DbSet<OrderDetail> OrderDetails { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<ProductOption> ProductOptions { get; set; }
         DbSet<Shipper> Shippers { get; set; }
-        DbSet<Supplier> Suppliers { get; set; }
-        DbSet<SupplierCategory> SupplierCategories { get; set; }
+        DbSet<UserShippingInfo> UserShippingInfos { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

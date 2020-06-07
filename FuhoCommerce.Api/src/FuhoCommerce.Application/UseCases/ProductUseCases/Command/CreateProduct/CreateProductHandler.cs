@@ -30,7 +30,6 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduc
                     Sku = request.Sku,
                     Stock = request.Stock,
                     CategoryId = request.CategoryId,
-                    SupplierId = request.SupplierId,
                     ProductOptions = request.ProductOptions
                 };
 

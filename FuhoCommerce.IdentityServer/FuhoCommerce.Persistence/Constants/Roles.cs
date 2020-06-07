@@ -8,8 +8,7 @@ namespace FuhoCommerce.Persistence.Constants
     {
         //consumer gonna be remove in the future
         public const string Consumer = "consumer";
-        public const string Supplier = "supplier";
-        public const string Buyer = "buyer";
         public const string Employee = "employee";
+        public const string SystemAdmin = "systemadmin";
     }
 }

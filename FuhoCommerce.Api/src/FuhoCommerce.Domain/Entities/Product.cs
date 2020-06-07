@@ -8,7 +8,6 @@ namespace FuhoCommerce.Domain.Entities
     public class Product : BaseEntity
     {
         public Guid ProductId { get; set; }
-        public Guid SupplierId { get; set; }
         public Guid CategoryId { get; set; }
         public string ProductName { get; set; }
         public string BrandName { get; set; }
@@ -17,11 +16,10 @@ namespace FuhoCommerce.Domain.Entities
         public int Stock { get; set; }
         public int? ReorderLevel { get; set; }
 
-        public Supplier Supplier { get; set; }
         public Category Category { get; set; }
         //Color: [Black, Red]
         public ICollection<ProductOption> ProductOptions { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; private set; }
-        public ICollection<BuyerComment> BuyerComments { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

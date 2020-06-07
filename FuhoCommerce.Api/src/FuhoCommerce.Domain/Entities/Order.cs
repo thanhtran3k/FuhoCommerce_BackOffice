@@ -8,7 +8,6 @@ namespace FuhoCommerce.Domain.Entities
     public class Order : BaseEntity
     {
         public Guid OrderId { get; set; }
-        public Guid BuyerId { get; set; }
         public DateTime? ShippedDate { get; set; }
         public int? ShipVia { get; set; }
         public decimal? Freight { get; set; }
@@ -19,7 +18,6 @@ namespace FuhoCommerce.Domain.Entities
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
 
-        public Buyer Buyer { get; set; }
         public Shipper Shipper { get; set; }
         public OrderDetail OrderDetail { get; set; }
     }

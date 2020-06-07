@@ -96,8 +96,8 @@ namespace FuhoCommerce.IdentityServer
 
             var serilog = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .Enrich.FromLogContext()
-                .WriteTo.File(@"authserver_log.txt");
+                .Enrich.FromLogContext();
+                //.WriteTo.File(@"authserver_log.txt");
 
             loggerFactory.WithFilter(new FilterLoggerSettings
                 {

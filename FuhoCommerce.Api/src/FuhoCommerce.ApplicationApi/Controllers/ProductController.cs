@@ -26,7 +26,7 @@ namespace FuhoCommerce.ApplicationApi.Controllers
 
         //}
 
-        [Authorize(Policy = "Supplier")]
+        [Authorize(Policy = "Consumer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveProduct(Guid id)
         {

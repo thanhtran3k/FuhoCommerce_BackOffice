@@ -1,5 +1,4 @@
 ﻿using FuhoCommerce.HttpUtility;
-using FuhoCommerce.IdentityServer.CrmModels;
 using FuhoCommerce.IdentityServer.Extensions;
 using FuhoCommerce.IdentityServer.Models;
 using FuhoCommerce.Persistence.Constants;
@@ -176,32 +175,17 @@ namespace FuhoCommerce.IdentityServer.Controllers
             }
 
             var user = new AppUser { 
-                UserName = model.Email, 
-                Name = model.Name, 
-                Email = model.Email, 
-                IsSupplier = model.IsSupplier 
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.Email,
+                Email = model.Email
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded) return BadRequest(result.Errors);
-            
-            if (model.IsSupplier)
-            {
-                await AddClaimToUser(user, Roles.Supplier);
-            } else
-            {
-                await AddClaimToUser(user, Roles.Buyer);
-            }
 
-            var crmUser = new CrmUser()
-            {
-                UserId = Guid.Parse(user.Id),
-                Email = user.Email,
-                IsSupplier = user.IsSupplier
-            };
-
-            await SyncUserToCrm(crmUser);
+            await AddClaimToUser(user, Roles.Consumer);
 
             var frontOfficeUrl = "https://localhost:5002";
 
@@ -292,14 +276,6 @@ namespace FuhoCommerce.IdentityServer.Controllers
             await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("name", user.Name));
             await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("email", user.Email));
             await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("role", role));
-        }
-
-        private async Task SyncUserToCrm(CrmUser crmUser)
-        {
-            //test endpoint
-            var url = "https://localhost:5001/api/Crm/SyncCrmCustomer";
-            var header = new Dictionary<string, string>();
-            await _restInvoker.PostAsync(url, JsonConvert.SerializeObject(crmUser), header);
         }
     }
 }

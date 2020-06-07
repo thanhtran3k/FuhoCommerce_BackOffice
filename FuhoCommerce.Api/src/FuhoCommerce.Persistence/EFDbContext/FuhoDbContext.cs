@@ -30,20 +30,17 @@ namespace FuhoCommerce.Persistence.EFDbContext
 
         #region DbSetFields here
 
-        public DbSet<Buyer> Buyers { get; set; }
-        public DbSet<BuyerCart> BuyerCarts { get; set; }
-        public DbSet<BuyerComment> BuyerComments { get; set; }
-        public DbSet<BuyerHistory> BuyerHistories { get; set; }
-        public DbSet<BuyerShippingInfo> BuyerShippingInfos { get; set; }
+        public DbSet<BuyHistory> BuyHistories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<FuhoWallet> FuhoWallets { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductOption> ProductOptions { get; set; }
         public DbSet<Shipper> Shippers { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<SupplierCategory> SupplierCategories { get; set; }
+        public DbSet<UserShippingInfo> UserShippingInfos { get; set; }
 
         #endregion
 
@@ -55,11 +52,11 @@ namespace FuhoCommerce.Persistence.EFDbContext
                 {
                     case EntityState.Added:
                         entry.Entity.CreateDate = _dateTimeProvider.UtcNow;
-                        entry.Entity.CreatedBy = _currentUserService.UserId ?? "system";
+                        entry.Entity.CreatedBy = _currentUserService.UserId ?? "systemadmin";
                         break;
                     case EntityState.Modified:
                         entry.Entity.UpdateDate = _dateTimeProvider.UtcNow;
-                        entry.Entity.UpdatedBy = _currentUserService.UserId ?? "system";
+                        entry.Entity.UpdatedBy = _currentUserService.UserId ?? "systemadmin";
                         break;
                 }
             }

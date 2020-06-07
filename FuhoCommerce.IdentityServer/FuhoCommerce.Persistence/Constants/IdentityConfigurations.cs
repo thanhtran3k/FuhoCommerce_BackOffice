@@ -34,7 +34,7 @@ namespace FuhoCommerce.Persistence.Constants
                         {
                             Name = "api.write",
                             DisplayName = "Api modifier",
-                            UserClaims = new List<string>() { Roles.Buyer, Roles.Supplier }
+                            UserClaims = new List<string>() { Roles.Consumer }
                         }
                     }
                 }

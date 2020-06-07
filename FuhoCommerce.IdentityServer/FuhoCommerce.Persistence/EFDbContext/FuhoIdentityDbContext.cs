@@ -25,17 +25,12 @@ namespace FuhoCommerce.Persistence.EFDbContext
             modelBuilder.Entity<IdentityRole>().HasData(
                 new IdentityRole { 
                     Name = Constants.Roles.Consumer, 
-                    NormalizedName = Constants.Roles.Consumer.ToUpper() 
+                    NormalizedName = Constants.Roles.Consumer.ToUpper()
                 },
                 new IdentityRole
                 {
-                    Name = Constants.Roles.Buyer,
-                    NormalizedName = Constants.Roles.Buyer.ToUpper()
-                },
-                new IdentityRole
-                {
-                    Name = Constants.Roles.Supplier,
-                    NormalizedName = Constants.Roles.Supplier.ToUpper()
+                    Name = Constants.Roles.SystemAdmin,
+                    NormalizedName = Constants.Roles.SystemAdmin.ToUpper()
                 });
         }
     }

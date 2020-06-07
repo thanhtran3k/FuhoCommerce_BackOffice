@@ -5,12 +5,10 @@ using System.Text;
 
 namespace FuhoCommerce.Domain.Entities
 {
-    public class BuyerCart : BaseEntity
+    public class BuyHistory : BaseEntity
     {
-        public Guid BuyerCartId { get; set; }
-        public Guid BuyerId { get; set; }
+        public Guid BuyHistoryId { get; set; }
 
-        public Buyer Buyer { get; set; }
         public ICollection<Product> Products { get; set; }
     }
 }

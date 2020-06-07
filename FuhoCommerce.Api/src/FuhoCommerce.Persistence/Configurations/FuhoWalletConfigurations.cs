@@ -11,8 +11,6 @@ namespace FuhoCommerce.Persistence.Configurations
         {
             builder.Property(p => p.FuhoCoin).HasColumnType("money");
             builder.Property(p => p.FuhoMoney).HasColumnType("money");
-
-            builder.HasOne(r => r.Buyer);
         }
     }
 }

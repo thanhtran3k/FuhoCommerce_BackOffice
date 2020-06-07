@@ -7,8 +7,13 @@
                 <h1 class="h3 mb-3 font-weight-normal">Register</h1>
                 <div class="form-group">
                     <label for="name" class="sr-only">Name</label>
-                    <input type="text" id="name" name="name" asp-for="Name" class="form-control"
-                           placeholder="Ưhat í yoủ name?" required autoFocus>
+                    <input type="text" id="firstname" name="firstname" asp-for="FirstName" class="form-control"
+                           placeholder="First name" required autoFocus>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="text" id="lastname" name="lastname" asp-for="LastName" class="form-control"
+                           placeholder="Last name" required autoFocus>
                 </div>
                 <div class="form-group">
                     <label for="email" class="sr-only">Email address</label>
@@ -19,10 +24,6 @@
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" id="password" name="password" asp-for="Password" class="form-control"
                            placeholder="Password" aria-describedby="passwordHelp" required>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" asp-for="IsSupplier" class="form-check-input">
-                    <label asp-for="IsSupplier" class="form-check-label">Supplier Account</label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Go</button>
                 <p>*Passwords must have at least one uppercase ('A'-'Z').</p>

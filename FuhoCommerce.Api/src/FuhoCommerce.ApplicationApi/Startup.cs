@@ -80,8 +80,6 @@ namespace FuhoCommerce.ApplicationApi
 
                 //claim
                 options.AddPolicy("Consumer", policy => policy.RequireClaim(ClaimTypes.Role, "consumer"));
-                options.AddPolicy("Buyer", policy => policy.RequireClaim(ClaimTypes.Role, "buyer"));
-                options.AddPolicy("Supplier", policy => policy.RequireClaim(ClaimTypes.Role, "supplier"));
             });
 
             #endregion

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace FuhoCommerce.Domain.Entities
 {
-    public class BuyerComment : BaseEntity
+    public class Comment : BaseEntity
     {
-        public Guid BuyerCommentId { get; set; }
+        public Guid CommentId { get; set; }
         public Guid ProductId { get; set; }
         public string Content { get; set; }
 

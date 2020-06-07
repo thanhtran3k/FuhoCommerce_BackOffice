@@ -7,8 +7,13 @@ namespace FuhoCommerce.IdentityServer.Models
     {
         [Required]
         [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+        [Display(Name = "FirstName")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+        [Display(Name = "LastName")]
+        public string LastName { get; set; }
 
         [Required]
         [EmailAddress]
@@ -19,7 +24,6 @@ namespace FuhoCommerce.IdentityServer.Models
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; } 
-        public bool IsSupplier { get; set; }
+        public string Password { get; set; }
     }
 }
