@@ -177,6 +177,7 @@ namespace FuhoCommerce.IdentityServer.Controllers
             var user = new AppUser { 
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                Name = string.Concat(model.FirstName, " ", model.LastName),
                 UserName = model.Email,
                 Email = model.Email
             };

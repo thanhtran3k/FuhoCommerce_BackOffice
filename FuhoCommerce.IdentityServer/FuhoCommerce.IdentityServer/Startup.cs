@@ -1,6 +1,8 @@
 using FuhoCommerce.HttpUtility;
 using FuhoCommerce.IdentityServer.Extensions;
 using FuhoCommerce.Persistence.DependencyInjection;
+using FuhoCommerce.Persistence.Services;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,8 @@ namespace FuhoCommerce.IdentityServer
             services.AddPersistence(Configuration, Environment);
 
             services.AddRestInvoker(Configuration);
+
+            services.AddTransient<IProfileService, IdentityClaimsProfileService>();
 
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
                .AllowAnyMethod()
