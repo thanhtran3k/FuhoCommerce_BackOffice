@@ -47,8 +47,8 @@ namespace FuhoCommerce.Persistence.Constants
             {
                 new Client {
                     RequireConsent = false,
-                    ClientId = "angular_spa",
-                    ClientName = "Angular SPA",
+                    ClientId = "FuhoCommerce.SellerChannel",
+                    ClientName = "FuhoCommerceSellerChannel",
                     Description = "Fuho Angular Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowedScopes = { "openid", "profile", "email", "api.read", "api.write" },
