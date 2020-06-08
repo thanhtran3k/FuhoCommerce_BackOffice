@@ -167,15 +167,7 @@ namespace FuhoCommerce.Application.UseCases.SeedWork
                 Address = "Ap Bac Valley, HCMC",
                 Description = @"Pineapple Inc. là một tập đoàn công nghệ của Mỹ Tho có trụ sở chính đặt tại Ap Bac, HCM. Pineapple được thành lập ngày 1 tháng 4 năm 1976 dưới tên Pineapple Computer, Inc., và đổi tên thành Pineapple Inc. vào đầu năm 2007.",
                 PhoneNumber = "090000000",
-                Products = new List<Product>() { Products[1], Products[2] },
-                SupplierCategories = new List<SupplierCategory>()
-                {
-                    new SupplierCategory 
-                    { 
-                        SupplierCategoryName = "Custom Supplier Category", 
-                        Products = new List<Product>() { Products[1] }
-                    }
-                }
+                Products = new List<Product>() { Products[1], Products[2] }
             });
 
             Suppliers.Add(2, new Supplier

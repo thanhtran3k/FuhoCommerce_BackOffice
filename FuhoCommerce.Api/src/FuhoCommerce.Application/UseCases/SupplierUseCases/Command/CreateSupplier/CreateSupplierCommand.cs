@@ -1,10 +1,9 @@
-﻿using FuhoCommerce.Domain.Common;
+﻿using MediatR;
 using System;
-using System.Collections.Generic;
 
-namespace FuhoCommerce.Domain.Entities
+namespace FuhoCommerce.Application.UseCases.SupplierUseCases.Command.CreateSupplier
 {
-    public class Supplier : BaseEntity
+    public class CreateSupplierCommand : IRequest
     {
         public Guid SupplierId { get; set; }
         public string Name { get; set; }
@@ -13,6 +12,5 @@ namespace FuhoCommerce.Domain.Entities
         public string PhoneNumber { get; set; }
         public string Description { get; set; }
         public int RatingReceived { get; set; }
-        public ICollection<Product> Products { get; set; }
     }
 }

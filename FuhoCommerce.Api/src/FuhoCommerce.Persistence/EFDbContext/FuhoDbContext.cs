@@ -3,9 +3,6 @@ using FuhoCommerce.CrossCuttingConcern;
 using FuhoCommerce.Domain.Common;
 using FuhoCommerce.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
