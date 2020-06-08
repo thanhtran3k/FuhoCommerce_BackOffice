@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FuhoCommerce.Application.Common.Interfaces;
+using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts
+namespace FuhoCommerce.Application.UseCases.ProductsUseCases.Query.GetAllProductss
 {
     public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, ProductListVm>
     {
