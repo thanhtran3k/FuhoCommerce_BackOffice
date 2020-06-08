@@ -30,10 +30,11 @@ namespace FuhoCommerce.ApplicationApi.Controllers
             _restInvoker = restInvoker;
         }
 
-        [Authorize(Policy = "Supplier")]
+        [Authorize(Policy = "Consumer")]
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            var x = User.Claims.Select(c => new { c.Type, c.Value });
             var rng = new List<string>() { "Tested" };
             return rng;
         }

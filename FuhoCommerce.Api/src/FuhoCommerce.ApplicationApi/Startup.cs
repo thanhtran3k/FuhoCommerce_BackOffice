@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System.Security.Claims;
 using System.Text;
 
@@ -80,6 +81,7 @@ namespace FuhoCommerce.ApplicationApi
 
                 //claim
                 options.AddPolicy("Consumer", policy => policy.RequireClaim(ClaimTypes.Role, "consumer"));
+                options.AddPolicy("SystemAdmin", policy => policy.RequireClaim(ClaimTypes.Role, "systemadmin"));
             });
 
             #endregion
@@ -90,6 +92,12 @@ namespace FuhoCommerce.ApplicationApi
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
+            });
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
 
             _services = services;
@@ -130,6 +138,16 @@ namespace FuhoCommerce.ApplicationApi
                     pattern: "{controller}/{action=Index}/{id?}");
                 endpoints.MapControllers();
                 //endpoints.MapRazorPages();
+            });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
 

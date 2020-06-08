@@ -34,7 +34,7 @@ namespace FuhoCommerce.Persistence.Constants
                         {
                             Name = "api.write",
                             DisplayName = "Api modifier",
-                            UserClaims = new List<string>() { Roles.Consumer }
+                            UserClaims = new List<string>() { Roles.Consumer, Roles.SystemAdmin }
                         }
                     }
                 }
@@ -47,8 +47,8 @@ namespace FuhoCommerce.Persistence.Constants
             {
                 new Client {
                     RequireConsent = false,
-                    ClientId = "FuhoCommerce.SellerChannel",
-                    ClientName = "FuhoCommerceSellerChannel",
+                    ClientId = "fuhocommerce_sellerchannel",
+                    ClientName = "FuhoCommerce Seller Channel",
                     Description = "Fuho Angular Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowedScopes = { "openid", "profile", "email", "api.read", "api.write" },

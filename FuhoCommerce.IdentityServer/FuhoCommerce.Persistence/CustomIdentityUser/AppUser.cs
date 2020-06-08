@@ -7,10 +7,6 @@ namespace FuhoCommerce.Persistence.CustomIdentityUser
 {
     public class AppUser : IdentityUser
     {
-        public AppUser()
-        {
-            Name = string.Concat(FirstName, LastName);
-        }
         public string Name { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
