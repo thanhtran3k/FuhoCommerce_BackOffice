@@ -1,12 +1,12 @@
-﻿using FuhoCommerce.Domain.Entities;
+using FuhoCommerce.Domain.Entities;
 using MediatR;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
-namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduct
+namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduct
 {
-    public class CreateProductCommand : IRequest
+    public class UpdateProductCommand : IRequest
     {
         public Guid ProductId { get; set; }
         public Guid SupplierId { get; set; }
@@ -18,13 +18,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduc
         public string Sku { get; set; }
         public int Stock { get; set; }
         public int? ReorderLevel { get; set; }
+
         public ICollection<ProductOption> ProductOptions { get; set; }
-
-        public CreateProductCommand()
-        {
-
-        }
-
-
     }
 }
