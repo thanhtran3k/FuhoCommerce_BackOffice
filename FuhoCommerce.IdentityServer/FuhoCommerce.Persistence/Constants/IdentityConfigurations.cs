@@ -52,9 +52,9 @@ namespace FuhoCommerce.Persistence.Constants
                     Description = "Fuho Angular Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowedScopes = { "openid", "profile", "email", "api.read", "api.write" },
-                    RedirectUris = {"http://localhost:4200/auth-callback"},
-                    PostLogoutRedirectUris = {"http://localhost:4200/"},
-                    AllowedCorsOrigins = {"http://localhost:4200"},
+                    RedirectUris = { "http://localhost:4200/auth-callback" },
+                    PostLogoutRedirectUris = { "http://localhost:4200/home" },
+                    AllowedCorsOrigins = { "http://localhost:4200" },
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 3600
                 },
