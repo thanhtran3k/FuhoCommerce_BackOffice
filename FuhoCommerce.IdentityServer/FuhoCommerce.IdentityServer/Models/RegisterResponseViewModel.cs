@@ -7,12 +7,17 @@ namespace FuhoCommerce.IdentityServer.Models
         public RegisterResponseViewModel(AppUser user)
         {
             Id = user.Id;
-            //Name = user.Name;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Name = user.Name;
             Email = user.Email;
         }
 
         public string Id { get; set; }
-        //public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public string Name { get; set; }
         public string Email { get; set; }
     }
 }

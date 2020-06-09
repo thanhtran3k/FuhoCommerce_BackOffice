@@ -165,7 +165,7 @@ namespace FuhoCommerce.IdentityServer.Controllers
         public IActionResult Register() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterRequestViewModel model)
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterRequestViewModel model)
         {
             //var aVal = 0; var blowUp = 1 / aVal;
 
@@ -175,6 +175,34 @@ namespace FuhoCommerce.IdentityServer.Controllers
             }
 
             var user = new AppUser { 
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Name = string.Concat(model.FirstName, " ", model.LastName),
+                UserName = model.Email,
+                Email = model.Email
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            await AddClaimToUser(user, Roles.Consumer);
+
+            return Ok(new RegisterResponseViewModel(user));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterRequestViewModel model)
+        {
+            //var aVal = 0; var blowUp = 1 / aVal;
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new AppUser
+            {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Name = string.Concat(model.FirstName, " ", model.LastName),
