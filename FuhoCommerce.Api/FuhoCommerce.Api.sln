@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FuhoCommerce.Api", "src\FuhoCommerce.Api", "{0B1EA4B8-578D-499E-8D55-12EF3E9F6E0C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FuhoCommerce.Api", "FuhoCommerce.Api", "{0B1EA4B8-578D-499E-8D55-12EF3E9F6E0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuhoCommerce.ApplicationApi", "src\FuhoCommerce.ApplicationApi\FuhoCommerce.ApplicationApi.csproj", "{A4F1740C-A0A8-4FBB-8EF1-BD9FBFFBDA59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuhoCommerce.ApplicationApi", "src\FuhoCommerce.ApplicationApi\FuhoCommerce.ApplicationApi.csproj", "{A4F1740C-A0A8-4FBB-8EF1-BD9FBFFBDA59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FuhoCommerce.Tests", "FuhoCommerce.Tests", "{9CC186C7-87AF-4BBB-B9C5-0B40103CB515}"
 EndProject
@@ -15,15 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B930B181-6FE7-4D7B-B386-11F5314507F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuhoCommerce.Application", "src\FuhoCommerce.Application\FuhoCommerce.Application.csproj", "{4162359F-F406-4B54-813D-C32BC576C46C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuhoCommerce.Application", "src\FuhoCommerce.Application\FuhoCommerce.Application.csproj", "{4162359F-F406-4B54-813D-C32BC576C46C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuhoCommerce.Domain", "src\FuhoCommerce.Domain\FuhoCommerce.Domain.csproj", "{5481B99E-B66C-4306-B774-B98F53AD3F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuhoCommerce.Domain", "src\FuhoCommerce.Domain\FuhoCommerce.Domain.csproj", "{5481B99E-B66C-4306-B774-B98F53AD3F19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuhoCommerce.CrossCuttingConcern", "src\FuhoCommerce.Common\FuhoCommerce.CrossCuttingConcern.csproj", "{5FD7EA52-3FBF-4CB0-8405-7766A305A89B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuhoCommerce.CrossCuttingConcern", "src\FuhoCommerce.Common\FuhoCommerce.CrossCuttingConcern.csproj", "{5FD7EA52-3FBF-4CB0-8405-7766A305A89B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuhoCommerce.Persistence", "src\FuhoCommerce.Persistence\FuhoCommerce.Persistence.csproj", "{B5CA945D-A10A-42DA-876B-7040264BA38E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuhoCommerce.Persistence", "src\FuhoCommerce.Persistence\FuhoCommerce.Persistence.csproj", "{B5CA945D-A10A-42DA-876B-7040264BA38E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuhoCommerce.Infrastructure", "src\FuhoCommerce.Infrastructure\FuhoCommerce.Infrastructure.csproj", "{DD9ACC54-9145-47C5-A64C-95AA5920DD21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuhoCommerce.Infrastructure", "src\FuhoCommerce.Infrastructure\FuhoCommerce.Infrastructure.csproj", "{DD9ACC54-9145-47C5-A64C-95AA5920DD21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "src\Application.UnitTests\Application.UnitTests.csproj", "{DA10EF0B-3AB9-42AC-92DC-B0C54549EE65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{DD9ACC54-9145-47C5-A64C-95AA5920DD21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD9ACC54-9145-47C5-A64C-95AA5920DD21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD9ACC54-9145-47C5-A64C-95AA5920DD21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA10EF0B-3AB9-42AC-92DC-B0C54549EE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA10EF0B-3AB9-42AC-92DC-B0C54549EE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA10EF0B-3AB9-42AC-92DC-B0C54549EE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA10EF0B-3AB9-42AC-92DC-B0C54549EE65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{5FD7EA52-3FBF-4CB0-8405-7766A305A89B} = {B9AFA7D6-FBC9-4FD5-AF0E-0BEB329FA098}
 		{B5CA945D-A10A-42DA-876B-7040264BA38E} = {B930B181-6FE7-4D7B-B386-11F5314507F5}
 		{DD9ACC54-9145-47C5-A64C-95AA5920DD21} = {B930B181-6FE7-4D7B-B386-11F5314507F5}
+		{DA10EF0B-3AB9-42AC-92DC-B0C54549EE65} = {9CC186C7-87AF-4BBB-B9C5-0B40103CB515}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1576ED32-A40F-4BAB-935C-542D2E5C4563}

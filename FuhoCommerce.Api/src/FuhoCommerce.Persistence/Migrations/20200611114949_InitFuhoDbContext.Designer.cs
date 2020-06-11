@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuhoCommerce.Persistence.Migrations
 {
     [DbContext(typeof(FuhoDbContext))]
-    [Migration("20200607153511_InitFuhoDbContext")]
+    [Migration("20200611114949_InitFuhoDbContext")]
     partial class InitFuhoDbContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -284,6 +284,9 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Images")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -430,7 +433,7 @@ namespace FuhoCommerce.Persistence.Migrations
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Order", b =>
                 {
                     b.HasOne("FuhoCommerce.Domain.Entities.Shipper", "Shipper")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("ShipperId");
                 });
 

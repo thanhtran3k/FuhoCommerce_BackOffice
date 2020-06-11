@@ -1,0 +1,1 @@
+I add this folder for future, if any member want to use AutoMapper
