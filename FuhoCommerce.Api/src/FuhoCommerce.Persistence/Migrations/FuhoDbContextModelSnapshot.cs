@@ -282,6 +282,9 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Images")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -428,7 +431,7 @@ namespace FuhoCommerce.Persistence.Migrations
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Order", b =>
                 {
                     b.HasOne("FuhoCommerce.Domain.Entities.Shipper", "Shipper")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("ShipperId");
                 });
 
