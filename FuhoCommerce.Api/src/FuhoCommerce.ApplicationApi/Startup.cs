@@ -21,16 +21,15 @@ namespace FuhoCommerce.ApplicationApi
 {
     public class Startup
     {
-        public IConfiguration _configuration { get; }
+        public IConfiguration Configuration { get; }
         private IServiceCollection _services;
-
-        //In case needed
-        //public IWebHostEnvironment Environment { get; }
+        public IWebHostEnvironment Environment { get; }
 
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
-            _configuration = configuration;
+            Configuration = configuration;
+            Environment = environment;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -40,7 +39,7 @@ namespace FuhoCommerce.ApplicationApi
             #region Dependency Injection Collections
 
             services.AddInfrastructure();
-            services.AddPersistence(_configuration);
+            services.AddPersistence(Configuration);
             services.AddApplication();
 
             #endregion
@@ -48,7 +47,7 @@ namespace FuhoCommerce.ApplicationApi
 
             #region Register RestInvoker
 
-            services.AddRestInvoker(_configuration);
+            services.AddRestInvoker(Configuration);
 
             #endregion
 
