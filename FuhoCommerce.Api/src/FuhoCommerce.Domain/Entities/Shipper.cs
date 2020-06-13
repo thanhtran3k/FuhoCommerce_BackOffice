@@ -6,8 +6,10 @@ namespace FuhoCommerce.Domain.Entities
 {
     public class Shipper
     {
-        public int ShipperId { get; set; }
+        public Guid ShipperId { get; set; }
         public string CompanyName { get; set; }
         public string PhoneNumber { get; set; }
+
+        public Order Order { get; set; }
     }
 }

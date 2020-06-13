@@ -14,9 +14,10 @@ namespace FuhoCommerce.Application.UseCases.CategoryUseCases.Query.GetCategoryBy
         private readonly IFuhoDbContext _fuhoDbContext;
         private readonly ILogger<GetCategoryByIdHandler> _logger;
 
-        public GetCategoryByIdHandler(IFuhoDbContext fuhoDbContext)
+        public GetCategoryByIdHandler(IFuhoDbContext fuhoDbContext, ILogger<GetCategoryByIdHandler> logger)
         {
             _fuhoDbContext = fuhoDbContext;
+            _logger = logger;
         }
 
         public async Task<CategoryDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)

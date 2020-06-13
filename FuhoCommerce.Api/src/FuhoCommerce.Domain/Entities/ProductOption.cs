@@ -11,6 +11,7 @@ namespace FuhoCommerce.Domain.Entities
         public string Optionkey { get; set; }
         public string OptionValues { get; set; }
 
+        public Guid ProductId { get; set; }
         public Product Product { get; set; }
     }
 }

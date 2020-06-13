@@ -8,7 +8,6 @@ namespace FuhoCommerce.Application.UseCases.CategoryUseCases.Command.CreateCateg
 {
     public class CreateCategoryCommand : IRequest
     {
-        public Guid CategoryId { get; set; }
         public string Name { get; set; }
         public string Thumbnail { get; set; }
     }

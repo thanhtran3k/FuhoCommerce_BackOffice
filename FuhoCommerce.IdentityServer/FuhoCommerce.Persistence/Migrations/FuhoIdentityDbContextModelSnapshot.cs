@@ -134,15 +134,15 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8f9452b8-b1b6-40ba-a0ca-8c9266c559b7",
-                            ConcurrencyStamp = "30b3da1d-98ef-4558-bbf5-f26ecbad0bf6",
+                            Id = "04b81e58-44f1-4cf3-aac4-53d09d919311",
+                            ConcurrencyStamp = "da71e4df-649d-4504-8a3c-968afd0195b2",
                             Name = "consumer",
                             NormalizedName = "CONSUMER"
                         },
                         new
                         {
-                            Id = "ab673726-ea98-4ef6-8cfe-5d41fa1c8bb8",
-                            ConcurrencyStamp = "347fcd7f-aac8-47bb-829a-26bda88efd1f",
+                            Id = "638c37c1-8a1f-4da9-8477-7f64c897a5b1",
+                            ConcurrencyStamp = "ceeb75e6-fd5d-4791-8354-06ad729a6efe",
                             Name = "systemadmin",
                             NormalizedName = "SYSTEMADMIN"
                         });

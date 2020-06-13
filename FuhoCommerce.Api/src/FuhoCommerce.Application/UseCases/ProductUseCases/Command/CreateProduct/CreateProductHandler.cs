@@ -1,8 +1,10 @@
 ﻿using FuhoCommerce.Application.Common.Interfaces;
 using FuhoCommerce.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,20 +24,25 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduc
         {
             try
             {
-                var newProduct = new Product()
+                var category = _fuhoDbContext.Categories.Where(x => x.CategoryId == request.CategoryId).ToList();
+
+                if (category.Any())
                 {
-                    ProductName = request.ProductName,
-                    BrandName = request.BrandName,
-                    Price = request.Price,
-                    Sku = request.Sku,
-                    Stock = request.Stock,
-                    CategoryId = request.CategoryId,
-                    ProductOptions = request.ProductOptions
-                };
+                    var newProduct = new Product()
+                    {
+                        ProductName = request.ProductName,
+                        BrandName = request.BrandName,
+                        Price = request.Price,
+                        Sku = request.Sku,
+                        Stock = request.Stock,
+                        CategoryId = request.CategoryId,
+                        ProductOptions = request.ProductOptions
+                    };
 
-                _fuhoDbContext.Products.Add(newProduct);
+                    _fuhoDbContext.Products.Add(newProduct);
 
-                await _fuhoDbContext.SaveChangesAsync(cancellationToken);
+                    await _fuhoDbContext.SaveChangesAsync(cancellationToken);
+                }
 
                 return Unit.Value;
             }

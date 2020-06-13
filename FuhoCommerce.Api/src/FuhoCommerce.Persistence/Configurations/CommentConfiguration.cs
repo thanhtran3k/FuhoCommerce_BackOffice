@@ -7,16 +7,15 @@ using System.Text;
 
 namespace FuhoCommerce.Persistence.Configurations
 {
-    public class ProductOptionConfigurations : IEntityTypeConfiguration<ProductOption>
+    public class CommentConfiguration : IEntityTypeConfiguration<Comment>
     {
-        public void Configure(EntityTypeBuilder<ProductOption> builder)
+        public void Configure(EntityTypeBuilder<Comment> builder)
         {
-            builder.Property(x => x.ProductOptionId)
-                .HasColumnName("ProductOptionID")
+            builder.Property(x => x.CommentId).HasColumnName("CommentID")
                 .IsRequired();
 
             builder.HasOne(x => x.Product)
-                .WithMany(x => x.ProductOptions)
+                .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.ProductId);
         }
     }
