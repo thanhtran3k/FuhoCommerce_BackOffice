@@ -15,6 +15,7 @@ namespace FuhoCommerce.Domain.Entities
         public string Sku { get; set; }
         public int Stock { get; set; }
         public int? ReorderLevel { get; set; }
+        public string Images { get; set; }
 
         public Category Category { get; set; }
         //Color: [Black, Red]

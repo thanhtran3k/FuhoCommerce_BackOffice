@@ -1,12 +1,8 @@
-﻿using AutoMapper;
-using FuhoCommerce.Application.Common.Interfaces;
+﻿using FuhoCommerce.Application.Common.Interfaces;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +12,7 @@ namespace FuhoCommerce.Application.UseCases.ProductsUseCases.Query.GetAllProduct
     {
         private readonly IFuhoDbContext _fuhoDbContext;
 
-        public GetAllProductsHandler(IFuhoDbContext fuhoDbContext, IMapper mapper)
+        public GetAllProductsHandler(IFuhoDbContext fuhoDbContext)
         {
             _fuhoDbContext = fuhoDbContext;
         }
