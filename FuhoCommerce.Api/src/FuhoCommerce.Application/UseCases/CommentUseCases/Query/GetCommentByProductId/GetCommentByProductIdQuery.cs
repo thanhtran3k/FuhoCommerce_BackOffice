@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System;
 
 namespace FuhoCommerce.Application.UseCases.CommentUseCases.Query.GetCommentByProductId
 {
