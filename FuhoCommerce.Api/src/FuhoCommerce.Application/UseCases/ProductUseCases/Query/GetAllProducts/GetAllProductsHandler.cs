@@ -20,6 +20,7 @@ namespace FuhoCommerce.Application.UseCases.ProductsUseCases.Query.GetAllProduct
         public async Task<ProductListVm> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
             var productList = await _fuhoDbContext.Products
+                .Include(x => x.Category)
                 .OrderByDescending(x => x.CreateDate)
                 .Select(x => new ProductDto
                 {
@@ -30,6 +31,7 @@ namespace FuhoCommerce.Application.UseCases.ProductsUseCases.Query.GetAllProduct
                     Sku = x.Sku,
                     Stock = x.Stock,
                     CaterogyId = x.CategoryId,
+                    CategoryName = x.Category.Name,
                     Images = x.Images,
                     ProductOptions = x.ProductOptions
                 })

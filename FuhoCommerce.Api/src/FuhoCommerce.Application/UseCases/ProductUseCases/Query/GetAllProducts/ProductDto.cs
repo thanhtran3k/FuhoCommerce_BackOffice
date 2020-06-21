@@ -15,6 +15,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts
         public string Sku { get; set; }
         public int Stock { get; set; }
         public string Images { get; set; }
+        public string CategoryName { get; set; }
 
         public ICollection<ProductOption> ProductOptions { get; set; }
     }
