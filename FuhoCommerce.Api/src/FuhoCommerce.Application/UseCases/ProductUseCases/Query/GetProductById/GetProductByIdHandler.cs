@@ -35,13 +35,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById
                     ProductName = x.ProductName,
                     Sku = x.Sku,
                     Stock = x.Stock,
-                    ProductOption = x.ProductOptions
-                    .Select(y => new ProductOptionDto
-                    {
-                        Optionkey = y.Optionkey,
-                        OptionValues = y.OptionValues,
-                        ProductOptionId = y.ProductOptionId
-                    }).ToList()
+                    ProductOptions = x.ProductOptions
                 })
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
