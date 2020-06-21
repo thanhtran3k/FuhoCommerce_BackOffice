@@ -32,7 +32,8 @@ namespace FuhoCommerce.Application.UseCases.CommentUseCases.Command.CreateCommen
                     {
                        Content = request.Content,
                        ProductId = request.ProductId,
-                       IsEdit = false
+                       IsEdit = false,
+                       Rating = request.Rating
                     };
 
                     _fuhoDbContext.Comments.Add(newComment);

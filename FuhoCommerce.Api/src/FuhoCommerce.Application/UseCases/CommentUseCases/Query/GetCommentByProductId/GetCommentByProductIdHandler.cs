@@ -20,29 +20,20 @@ namespace FuhoCommerce.Application.UseCases.CommentsUseCases.Query.GetCommentByP
 
         public async Task<CommentListVm> Handle(GetCommentByProductIdQuery request, CancellationToken cancellationToken)
         {
-            var commentList = await _fuhoDbContext.Products
-                .Include(x => x.Comments)
+            var commentList = await _fuhoDbContext.Comments
                 .Where(x => x.ProductId == request.ProductId)
-                .Select(x => new CommentDto
+                .Select(x => new CommentDto 
                 {
-                   CommentId = x.Comments
+                    CommentId = x.CommentId,
+                    Content = x.Content,
+                    IsEdit = x.IsEdit,
+                    Rating = x.Rating,
                 })
                 .ToListAsync();
 
-
-            //var productList = await _fuhoDbContext.Comments
-            //    .OrderByDescending(x => x.CreateDate)
-            //    .Select(x => new CommentDto
-            //    {
-            //       ProductId = x.Product.ProductId,
-            //       CommentId = x.CommentId,
-            //       Content = x.Content
-            //    })
-            //    .ToListAsync();
-
             var productListVm = new CommentListVm
             {
-                CommentDtos = productList
+                CommentDtos = commentList
             };
 
             return productListVm;

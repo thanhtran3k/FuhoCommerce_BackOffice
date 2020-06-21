@@ -10,6 +10,6 @@ namespace FuhoCommerce.Application.UseCases.CommentUseCases.Command.CreateCommen
     {
         public Guid ProductId { get; set; }
         public string Content { get; set; }
-
+        public int Rating { get; set; }
     }
 }

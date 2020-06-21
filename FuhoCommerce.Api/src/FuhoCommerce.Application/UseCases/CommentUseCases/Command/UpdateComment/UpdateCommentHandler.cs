@@ -31,6 +31,7 @@ namespace FuhoCommerce.Application.UseCases.CommentUseCases.Command.UpdateCommen
                     //Save comment
                     comment.Content = request.Content;
                     comment.IsEdit = true;
+                    comment.Rating = request.Rating;
 
                     _fuhoDbContext.Comments.Update(comment);
                     await _fuhoDbContext.SaveChangesAsync(cancellationToken);

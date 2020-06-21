@@ -2,6 +2,7 @@
 using FuhoCommerce.Application.UseCases.ProductUseCases.Command.RemoveProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
+using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace FuhoCommerce.ApplicationApi.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<ProductListVm>> GetAllProduct([FromQuery] int page = 1, int pageSize = 1)
         {
-            var result = await Mediator.Send(new GetAllProductQuery() { Page = page, PageSize = pageSize });
+            var result = await Mediator.Send(new GetAllProductsQuery() { Page = page, PageSize = pageSize });
             return Ok(result);
         }
 

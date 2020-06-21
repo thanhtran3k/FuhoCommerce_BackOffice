@@ -1,7 +1,6 @@
 ﻿using FuhoCommerce.Application.UseCases.CommentUseCases.Command.CreateComment;
 using FuhoCommerce.Application.UseCases.CommentUseCases.Command.RemoveComment;
 using FuhoCommerce.Application.UseCases.CommentUseCases.Command.UpdateComment;
-using FuhoCommerce.Application.UseCases.CommentUseCases.Query.GetAllComment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
