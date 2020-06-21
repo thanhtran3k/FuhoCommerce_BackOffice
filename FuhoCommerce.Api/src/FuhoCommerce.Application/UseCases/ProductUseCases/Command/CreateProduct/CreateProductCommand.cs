@@ -10,12 +10,12 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduc
     public class CreateProductCommand : IRequest
     {
         public string ProductName { get; set; }
+        public Guid CategoryId { get; set; }
         public string BrandName { get; set; }
         public decimal Price { get; set; }
         public string Sku { get; set; }
         public int Stock { get; set; }
         public IFormFile File { get; set; }
-        public Category Category { get; set; }
         public ICollection<ProductOption> ProductOptions { get; set; }
     }
 }

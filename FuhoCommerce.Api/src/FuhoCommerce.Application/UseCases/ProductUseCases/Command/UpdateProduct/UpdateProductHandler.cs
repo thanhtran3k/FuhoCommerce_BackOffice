@@ -2,6 +2,7 @@ using FuhoCommerce.Application.Common.Exceptions;
 using FuhoCommerce.Application.Common.Interfaces;
 using FuhoCommerce.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
@@ -12,11 +13,13 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduc
     public class UpdateProductHandler : IRequestHandler<UpdateProductCommand>
     {    
         private readonly IFuhoDbContext _fuhoDbContext;
+        private readonly IFileSystemService _fileSystemService;
         private readonly ILogger<UpdateProductHandler> _logger;
 
-        public UpdateProductHandler(IFuhoDbContext fuhoDbContext, ILogger<UpdateProductHandler> logger)
+        public UpdateProductHandler(IFuhoDbContext fuhoDbContext, IFileSystemService fileSystemService, ILogger<UpdateProductHandler> logger)
         {
             _fuhoDbContext = fuhoDbContext;
+            _fileSystemService = fileSystemService;
             _logger = logger;
         }
 
@@ -24,7 +27,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduc
         {
             try
             {
-                var product = await _fuhoDbContext.Products.FindAsync(request.ProductId);
+                var product = await _fuhoDbContext.Products.FirstOrDefaultAsync(x => x.ProductId == request.ProductId);
 
                 if (product != null)
                 {
@@ -36,6 +39,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduc
                     product.Stock = request.Stock;
                     product.CategoryId = request.CategoryId;
                     product.ProductOptions = request.ProductOptions;
+                    product.Images = await _fileSystemService.SingleUpdate(request.file, product.Images);
 
                     _fuhoDbContext.Products.Update(product);
                     await _fuhoDbContext.SaveChangesAsync(cancellationToken);

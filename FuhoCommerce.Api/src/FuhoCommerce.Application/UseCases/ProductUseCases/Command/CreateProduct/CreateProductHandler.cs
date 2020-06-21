@@ -35,7 +35,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduc
                     Stock = request.Stock,
                     ProductOptions = request.ProductOptions,
                     Images = await _fileSystemService.SingleUpload(request.File),
-                    CategoryId = request.Category.CategoryId
+                    CategoryId = request.CategoryId
                 };
 
                 _fuhoDbContext.Products.Add(newProduct);
