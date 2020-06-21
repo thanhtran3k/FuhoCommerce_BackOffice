@@ -1,6 +1,7 @@
 ﻿using FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Command.RemoveProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduct;
+using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +16,7 @@ namespace FuhoCommerce.ApplicationApi.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<ProductListVm>> GetAllProducts([FromQuery] int page, int pageSize)
+        public async Task<ActionResult<ProductListVm>> GetAllProduct([FromQuery] int page = 1, int pageSize = 1)
         {
             var result = await Mediator.Send(new GetAllProductsQuery() { Page = page, PageSize = pageSize });
             return Ok(result);
@@ -23,9 +24,14 @@ namespace FuhoCommerce.ApplicationApi.Controllers
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<ProductDto>> GetProductById([FromQuery] Guid productId)
+        public async Task<ActionResult<ProductDto>> GetProductById(Guid id)
         {
-            var result = await Mediator.Send(new GetProductByIdQuery(){ProductId = productId});
+            if (string.IsNullOrEmpty(id.ToString()))
+            {
+                return BadRequest("Invalid product id");
+            }
+
+            var result = await Mediator.Send(new GetProductByIdQuery(){ProductId = id});
             return Ok(result);
         }
 
@@ -39,6 +45,11 @@ namespace FuhoCommerce.ApplicationApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             await Mediator.Send(command);
             return Ok();
         }
@@ -47,6 +58,11 @@ namespace FuhoCommerce.ApplicationApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveProduct(Guid id)
         {
+            if (string.IsNullOrEmpty(id.ToString()))
+            {
+                return BadRequest("Invalid product id");
+            }
+
             await Mediator.Send(new RemoveProductCommand() { ProductId = id });
             return Ok();
         }

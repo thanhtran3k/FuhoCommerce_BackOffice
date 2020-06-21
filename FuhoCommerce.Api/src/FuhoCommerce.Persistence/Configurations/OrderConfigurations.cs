@@ -7,14 +7,16 @@ using System.Text;
 
 namespace FuhoCommerce.Persistence.Configurations
 {
-    //public class OrderConfigurations : IEntityTypeConfiguration<Order>
-    //{
-    //    public void Configure(EntityTypeBuilder<Order> builder)
-    //    {
-    //    }
-    //}
-
-    public class OrderConfigurations
+    public class OrderConfigurations : IEntityTypeConfiguration<Order>
     {
+        public void Configure(EntityTypeBuilder<Order> builder)
+        {
+            builder.Property(x => x.OrderId).HasColumnName("OrderID")
+                .IsRequired();
+
+            builder.HasOne(x => x.Shipper)
+                .WithOne(x => x.Order)
+                .HasForeignKey<Order>(x => x.OrderId);
+        }
     }
 }

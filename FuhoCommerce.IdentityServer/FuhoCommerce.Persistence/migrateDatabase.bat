@@ -7,8 +7,7 @@ SET migrationDir=%cd%\Migrations\
 dir /b %migrationDir% | findstr "^" >nul && :UpdateDatabase || :CreateNewMigrations
 
 :CreateNewMigrations
-cd %migrationDir%
-for /F "delims=" %%i in ('dir /b') do (rmdir "%%i" /s/q || del "%%i" /s/q)
+
 cd %persistenceDir%
 Start /wait dotnet ef migrations add InitFuhoIdentityDbContext -c FuhoIdentityDbContext -o Migrations
 Start /wait dotnet ef database update -c FuhoIdentityDbContext

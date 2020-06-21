@@ -101,6 +101,7 @@ namespace FuhoCommerce.Persistence.Migrations
                 {
                     b.Property<Guid>("CommentId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("CommentID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
@@ -163,7 +164,7 @@ namespace FuhoCommerce.Persistence.Migrations
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Order", b =>
                 {
                     b.Property<Guid>("OrderId")
-                        .ValueGeneratedOnAdd()
+                        .HasColumnName("OrderID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -199,9 +200,6 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<DateTime?>("ShippedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ShipperId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -210,8 +208,6 @@ namespace FuhoCommerce.Persistence.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("ShipperId");
-
                     b.ToTable("Orders");
                 });
 
@@ -219,6 +215,7 @@ namespace FuhoCommerce.Persistence.Migrations
                 {
                     b.Property<Guid>("OrderDetailId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("OrderDetailID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -250,9 +247,6 @@ namespace FuhoCommerce.Persistence.Migrations
 
                     b.HasKey("OrderDetailId");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
-
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
@@ -262,6 +256,7 @@ namespace FuhoCommerce.Persistence.Migrations
                 {
                     b.Property<Guid>("ProductId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ProductID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BrandName")
@@ -282,13 +277,11 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Images")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ReorderLevel")
@@ -321,6 +314,7 @@ namespace FuhoCommerce.Persistence.Migrations
                 {
                     b.Property<Guid>("ProductOptionId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ProductOptionID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -335,7 +329,7 @@ namespace FuhoCommerce.Persistence.Migrations
                     b.Property<string>("Optionkey")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ProductId")
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -353,10 +347,9 @@ namespace FuhoCommerce.Persistence.Migrations
 
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Shipper", b =>
                 {
-                    b.Property<int>("ShipperId")
+                    b.Property<Guid>("ShipperId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
@@ -430,19 +423,21 @@ namespace FuhoCommerce.Persistence.Migrations
 
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.Order", b =>
                 {
+                    b.HasOne("FuhoCommerce.Domain.Entities.OrderDetail", "OrderDetail")
+                        .WithOne("Order")
+                        .HasForeignKey("FuhoCommerce.Domain.Entities.Order", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FuhoCommerce.Domain.Entities.Shipper", "Shipper")
-                        .WithMany()
-                        .HasForeignKey("ShipperId");
+                        .WithOne("Order")
+                        .HasForeignKey("FuhoCommerce.Domain.Entities.Order", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FuhoCommerce.Domain.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("FuhoCommerce.Domain.Entities.Order", "Order")
-                        .WithOne("OrderDetail")
-                        .HasForeignKey("FuhoCommerce.Domain.Entities.OrderDetail", "OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FuhoCommerce.Domain.Entities.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
@@ -471,7 +466,9 @@ namespace FuhoCommerce.Persistence.Migrations
                 {
                     b.HasOne("FuhoCommerce.Domain.Entities.Product", "Product")
                         .WithMany("ProductOptions")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

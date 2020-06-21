@@ -15,7 +15,7 @@ namespace FuhoCommerce.ApplicationApi.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<CategoryListVm>> GetAllCategorys()
+        public async Task<ActionResult<CategoryListVm>> GetAllCategories()
         {
             var result = await Mediator.Send(new GetAllCategoriesQuery());
             return Ok(result);
@@ -23,9 +23,9 @@ namespace FuhoCommerce.ApplicationApi.Controllers
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<CategoryDto>> GetCategoryById([FromQuery] Guid productId)
+        public async Task<ActionResult<CategoryDto>> GetCategoryById([FromQuery] Guid id)
         {
-            var result = await Mediator.Send(new GetCategoryByIdQuery(){CategoryId = productId});
+            var result = await Mediator.Send(new GetCategoryByIdQuery(){CategoryId = id});
             return Ok(result);
         }
 

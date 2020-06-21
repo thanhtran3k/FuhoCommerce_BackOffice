@@ -19,12 +19,5 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduc
         public int Stock { get; set; }
         public int? ReorderLevel { get; set; }
         public ICollection<ProductOption> ProductOptions { get; set; }
-
-        public CreateProductCommand()
-        {
-
-        }
-
-
     }
 }

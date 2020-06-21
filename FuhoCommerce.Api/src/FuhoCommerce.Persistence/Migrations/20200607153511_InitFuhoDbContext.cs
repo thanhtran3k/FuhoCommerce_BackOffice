@@ -126,7 +126,6 @@ namespace FuhoCommerce.Persistence.Migrations
                     Sku = table.Column<string>(nullable: true),
                     Stock = table.Column<int>(nullable: false),
                     ReorderLevel = table.Column<int>(nullable: true),
-                    Images = table.Column<string>(nullable: true),
                     BuyHistoryId = table.Column<Guid>(nullable: true),
                     CartId = table.Column<Guid>(nullable: true)
                 },

@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using FuhoCommerce.Application.Common.Interfaces;
+using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,11 +22,22 @@ namespace FuhoCommerce.Application.UseCases.CategoryUseCases.Query.GetAllCategor
         {
             var productList = await _fuhoDbContext.Categories
                 .OrderByDescending(x => x.Name)
+                .Include(x => x.Products)
                 .Select(x => new CategoryDto
                 {
                     CategoryId = x.CategoryId,
                     Name = x.Name,
-                    Thumbnail = x.Thumbnail
+                    Thumbnail = x.Thumbnail,
+                    Products = x.Products
+                    .Select(y => new ProductDto 
+                    {
+                        ProductId = y.ProductId,
+                        ProductName = y.ProductName,
+                        BrandName = y.BrandName,
+                        Price = y.Price,
+                        Sku = y.Sku,
+                        Stock = y.Stock
+                    }).ToList()
                 })
                 .ToListAsync();
 
