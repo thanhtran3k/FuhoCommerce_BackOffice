@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
+using FuhoCommerce.Application.UseCases.SeedWork;
 using FuhoCommerce.Persistence.EFDbContext;
+using MediatR;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +20,7 @@ namespace FuhoCommerce.ApplicationApi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
 
@@ -31,8 +34,8 @@ namespace FuhoCommerce.ApplicationApi
                     _fuhoContext.Database.Migrate();
 
                     //Seed data
-                    //var _mediator = services.GetRequiredService<IMediator>();
-                    //await _mediator.Send(new MockDataCommand(), CancellationToken.None);
+                    var _mediator = services.GetRequiredService<IMediator>();
+                    await _mediator.Send(new SeedDataCommand(), CancellationToken.None);
                 }
                 catch (Exception ex)
                 {

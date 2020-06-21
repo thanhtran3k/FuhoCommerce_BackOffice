@@ -13,36 +13,34 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduc
 {
     public class CreateProductHandler : IRequestHandler<CreateProductCommand>
     {
-        public readonly IFuhoDbContext _fuhoDbContext;
+        private readonly IFuhoDbContext _fuhoDbContext;
+        private readonly IFileSystemService _fileSystemService;
 
-        public CreateProductHandler(IFuhoDbContext fuhoDbContext)
+        public CreateProductHandler(IFuhoDbContext fuhoDbContext, IFileSystemService fileSystemService)
         {
             _fuhoDbContext = fuhoDbContext;
+            _fileSystemService = fileSystemService;
         }
 
         public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var category = _fuhoDbContext.Categories.Where(x => x.CategoryId == request.CategoryId).ToList();
-
-                if (category.Any())
+                var newProduct = new Product()
                 {
-                    var newProduct = new Product()
-                    {
-                        ProductName = request.ProductName,
-                        BrandName = request.BrandName,
-                        Price = request.Price,
-                        Sku = request.Sku,
-                        Stock = request.Stock,
-                        CategoryId = request.CategoryId,
-                        ProductOptions = request.ProductOptions
-                    };
+                    ProductName = request.ProductName,
+                    BrandName = request.BrandName,
+                    Price = request.Price,
+                    Sku = request.Sku,
+                    Stock = request.Stock,
+                    ProductOptions = request.ProductOptions,
+                    Images = await _fileSystemService.SingleUpload(request.File),
+                    CategoryId = request.Category.CategoryId
+                };
 
-                    _fuhoDbContext.Products.Add(newProduct);
+                _fuhoDbContext.Products.Add(newProduct);
 
-                    await _fuhoDbContext.SaveChangesAsync(cancellationToken);
-                }
+                await _fuhoDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
