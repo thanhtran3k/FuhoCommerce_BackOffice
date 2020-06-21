@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FuhoCommerce.Application.Common.Interfaces;
-using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
+using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace FuhoCommerce.Application.UseCases.CategoryUseCases.Query.GetAllCategor
     {
         private readonly IFuhoDbContext _fuhoDbContext;
 
-        public GetAllCategoriesHandler(IFuhoDbContext fuhoDbContext, IMapper mapper)
+        public GetAllCategoriesHandler(IFuhoDbContext fuhoDbContext)
         {
             _fuhoDbContext = fuhoDbContext;
         }

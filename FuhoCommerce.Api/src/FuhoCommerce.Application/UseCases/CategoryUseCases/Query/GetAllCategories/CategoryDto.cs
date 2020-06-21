@@ -1,4 +1,4 @@
-﻿using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
+﻿using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using System;
 using System.Collections;
 using System.Collections.Generic;

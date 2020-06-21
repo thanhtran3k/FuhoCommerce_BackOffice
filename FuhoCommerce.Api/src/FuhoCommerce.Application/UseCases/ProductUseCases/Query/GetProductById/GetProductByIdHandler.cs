@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FuhoCommerce.Application.Common.Interfaces;
-using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
+using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
