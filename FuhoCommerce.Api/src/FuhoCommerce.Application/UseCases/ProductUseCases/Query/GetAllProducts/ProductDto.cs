@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct
+namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts
 {
     public class ProductDto
     {

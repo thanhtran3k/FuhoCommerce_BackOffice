@@ -1,5 +1,4 @@
 ﻿using FuhoCommerce.Application.Common.Interfaces;
-using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

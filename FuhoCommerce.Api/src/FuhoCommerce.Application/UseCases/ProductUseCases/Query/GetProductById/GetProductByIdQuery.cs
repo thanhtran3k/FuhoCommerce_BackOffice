@@ -1,5 +1,5 @@
 using System;
-using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
+using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using MediatR;
 
 namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById

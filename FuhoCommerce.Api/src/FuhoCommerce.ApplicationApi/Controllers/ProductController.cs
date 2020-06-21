@@ -1,7 +1,6 @@
 ﻿using FuhoCommerce.Application.UseCases.ProductUseCases.Command.CreateProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Command.RemoveProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduct;
-using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProduct;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById;
 using Microsoft.AspNetCore.Authorization;
