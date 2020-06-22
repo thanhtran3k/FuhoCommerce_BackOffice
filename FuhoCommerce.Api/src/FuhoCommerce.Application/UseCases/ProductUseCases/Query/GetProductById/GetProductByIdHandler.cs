@@ -1,15 +1,17 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FuhoCommerce.Application.Common.Exceptions;
 using FuhoCommerce.Application.Common.Interfaces;
 using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
+using FuhoCommerce.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById
 {
-    public class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery, ProductDto>
+    public class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery, ProductDetailVm>
     {
         private readonly IFuhoDbContext _fuhoDbContext;
         private readonly ILogger<GetProductByIdHandler> _logger;
@@ -20,26 +22,31 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById
             _logger = logger;
         }
 
-        public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProductDetailVm> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("GetProductByIdhandler - Get product by id");
 
-            var result = await _fuhoDbContext.Products
+            var product = await _fuhoDbContext.Products
                 .AsNoTracking()
-                .Include(x => x.ProductOptions)
-                .Select(x => new ProductDto
-                {
-                    ProductId = x.ProductId,
-                    BrandName = x.BrandName,
-                    Price = x.Price,
-                    ProductName = x.ProductName,
-                    Sku = x.Sku,
-                    Stock = x.Stock,
-                    ProductOptions = x.ProductOptions
-                })
-                .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+                .Include(x => x.Category)
+                .FirstOrDefaultAsync(x => x.ProductId == request.ProductId);
 
-            return result;
+            if (product == null) throw new NullResult(nameof(Product), request.ProductId);
+
+            var productDetail = new ProductDetailVm
+            {
+                ProductId = product.ProductId,
+                CaterogyId = product.CategoryId,
+                CategoryName = product.Category.Name,
+                BrandName = product.BrandName,
+                Price = product.Price,
+                ProductName = product.ProductName,
+                Sku = product.Sku,
+                Stock = product.Stock,
+                ProductOptions = product.ProductOptions
+            };
+
+            return productDetail;
         }
     }
 }

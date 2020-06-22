@@ -21,13 +21,16 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts
         public async Task<ProductsSCVm> Handle(GetAllProductsSCQuery request, CancellationToken cancellationToken)
         {
             var productsSC = await _fuhoDbContext.Products
+                .AsNoTracking()
                 .Include(x => x.Category)
+                .Where(x => x.CreatedBy == request.UserId)
                 .Select(x => new ProductsSCDto
                 {
                     ProductId = x.ProductId,
                     ProductName = x.ProductName,
                     BrandName = x.BrandName,
-                    Category = x.Category,
+                    CategoryId = x.CategoryId,
+                    CategoryName = x.Category.Name,
                     Price = x.Price,
                     Stock = x.Stock,
                     CreatedOn = x.CreateDate
@@ -35,7 +38,6 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts
                 .Skip((request.Page - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .OrderByDescending(x => x.CreatedOn)
-                .AsNoTracking()
                 .ToListAsync();
 
             var result = new ProductsSCVm

@@ -8,5 +8,6 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.RemoveProduc
     public class RemoveProductCommand : IRequest
     {
         public Guid ProductId { get; set; }
+        public string UserId { get; set; }
     }
 }
