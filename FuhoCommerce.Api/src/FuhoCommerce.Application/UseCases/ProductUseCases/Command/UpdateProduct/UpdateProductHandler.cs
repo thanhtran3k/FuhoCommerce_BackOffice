@@ -27,29 +27,26 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduc
         {
             try
             {
-                var product = await _fuhoDbContext.Products.FirstOrDefaultAsync(x => x.ProductId == request.ProductId);
+                var product = await _fuhoDbContext.Products.AsNoTracking().FirstOrDefaultAsync(x => x.ProductId == request.ProductId);
 
-                if (product != null)
-                {
-                    //Save product
-                    product.ProductName = request.ProductName;
-                    product.BrandName = request.BrandName;
-                    product.Price = request.Price;
-                    product.Sku = request.Sku;
-                    product.Stock = request.Stock;
-                    product.CategoryId = request.CategoryId;
-                    product.ProductOptions = request.ProductOptions;
-                    product.Images = await _fileSystemService.SingleUpdate(request.file, product.Images);
+                if (product.UpdatedBy != request.UserId) throw new ForbiddenAction(nameof(UpdateProductHandler), request.UserId);
 
-                    _fuhoDbContext.Products.Update(product);
-                    await _fuhoDbContext.SaveChangesAsync(cancellationToken);
+                if (product == null) throw new NullResult(nameof(Product), nameof(request.ProductId));
 
-                    return Unit.Value;
-                }
-                else
-                {
-                    throw new NullResult(nameof(Product), nameof(request.ProductId));
-                }
+                //Save product
+                product.ProductName = request.ProductName;
+                product.BrandName = request.BrandName;
+                product.Price = request.Price;
+                product.Sku = request.Sku;
+                product.Stock = request.Stock;
+                product.CategoryId = request.CategoryId;
+                product.ProductOptions = request.ProductOptions;
+                product.Images = await _fileSystemService.SingleUpdate(request.file, product.Images);
+
+                _fuhoDbContext.Products.Update(product);
+                await _fuhoDbContext.SaveChangesAsync(cancellationToken);
+
+                return Unit.Value;
             }
             catch (Exception ex)
             {

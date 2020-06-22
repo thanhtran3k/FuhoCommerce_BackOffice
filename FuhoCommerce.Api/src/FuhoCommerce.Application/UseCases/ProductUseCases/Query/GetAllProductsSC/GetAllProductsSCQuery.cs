@@ -9,5 +9,6 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts
     {
         public int Page { get; set; }
         public int PageSize { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -22,14 +22,12 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.RemoveProduc
         {
             var result = await _fuhoDbContext.Products.FindAsync(request.ProductId);
 
-            if (result != null)
-            {
-                _fuhoDbContext.Products.Remove(result);
-                await _fuhoDbContext.SaveChangesAsync(cancellationToken);
-            } else
-            {
-                throw new NullResult(nameof(Product), nameof(request.ProductId));
-            }
+            if (result.CreatedBy != request.UserId) throw new ForbiddenAction(nameof(RemoveProductHandler), request.UserId);
+
+            if (result == null) throw new NullResult(nameof(Product), nameof(request.ProductId));
+
+            _fuhoDbContext.Products.Remove(result);
+            await _fuhoDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

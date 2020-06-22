@@ -8,11 +8,14 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts
     public class ProductsSCDto
     {
         public Guid ProductId { get; set; }
+        public Guid CategoryId { get; set; }
+
         public string ProductName { get; set; }
         public string BrandName { get; set; }
         public decimal Price { get; set; }
         public int Stock { get; set; }
+        public string CategoryName { get; set; }
+
         public DateTime CreatedOn { get; set; }
-        public Category Category { get; set; }
     }
 }

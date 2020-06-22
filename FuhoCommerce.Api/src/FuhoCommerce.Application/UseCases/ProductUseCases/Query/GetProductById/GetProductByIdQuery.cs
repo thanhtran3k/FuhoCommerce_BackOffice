@@ -4,7 +4,7 @@ using MediatR;
 
 namespace FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetProductById
 {
-    public class GetProductByIdQuery : IRequest<ProductDto>
+    public class GetProductByIdQuery : IRequest<ProductDetailVm>
     {
         public Guid ProductId{get; set;}
     }
