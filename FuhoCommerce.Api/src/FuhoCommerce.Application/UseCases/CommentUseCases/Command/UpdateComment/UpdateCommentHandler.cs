@@ -26,22 +26,18 @@ namespace FuhoCommerce.Application.UseCases.CommentUseCases.Command.UpdateCommen
             {
                 var comment = await _fuhoDbContext.Comments.FindAsync(request.CommentId);
 
-                if (comment != null)
-                {
-                    //Save comment
-                    comment.Content = request.Content;
-                    comment.IsEdit = true;
-                    comment.Rating = request.Rating;
+                if (comment == null) throw new NullResult(nameof(Comment), nameof(request.CommentId));
 
-                    _fuhoDbContext.Comments.Update(comment);
-                    await _fuhoDbContext.SaveChangesAsync(cancellationToken);
+                if (request.UserId != comment.CreatedBy) throw new ForbiddenAction(nameof(UpdateCommentCommand), request.UserId);
 
-                    return Unit.Value;
-                }
-                else
-                {
-                    throw new NullResult(nameof(Comment), nameof(request.CommentId));
-                }
+                comment.Content = request.Content;
+                comment.IsEdit = true;
+                comment.Rating = request.Rating;
+
+                _fuhoDbContext.Comments.Update(comment);
+                await _fuhoDbContext.SaveChangesAsync(cancellationToken);
+
+                return Unit.Value;
             }
             catch (Exception ex)
             {

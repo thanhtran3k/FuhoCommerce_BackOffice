@@ -22,7 +22,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.RemoveProduc
         {
             var result = await _fuhoDbContext.Products.FindAsync(request.ProductId);
 
-            if (result.CreatedBy != request.UserId) throw new ForbiddenAction(nameof(RemoveProductHandler), request.UserId);
+            if (request.UserId != result.CreatedBy) throw new ForbiddenAction(nameof(RemoveProductHandler), request.UserId);
 
             if (result == null) throw new NullResult(nameof(Product), nameof(request.ProductId));
 

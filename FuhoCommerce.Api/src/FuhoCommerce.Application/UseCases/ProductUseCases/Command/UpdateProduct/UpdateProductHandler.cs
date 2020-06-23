@@ -29,7 +29,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduc
             {
                 var product = await _fuhoDbContext.Products.AsNoTracking().FirstOrDefaultAsync(x => x.ProductId == request.ProductId);
 
-                if (product.UpdatedBy != request.UserId) throw new ForbiddenAction(nameof(UpdateProductHandler), request.UserId);
+                if (request.UserId != product.CreatedBy) throw new ForbiddenAction(nameof(UpdateProductHandler), request.UserId);
 
                 if (product == null) throw new NullResult(nameof(Product), nameof(request.ProductId));
 

@@ -33,7 +33,7 @@ namespace FuhoCommerce.Application.UseCases.CategoryUseCases.Query.GetCategoryBy
                     Name = x.Thumbnail,
                     Thumbnail = x.Thumbnail
                 })
-                .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+                .FirstOrDefaultAsync(cancellationToken);
 
             return result;
         }
