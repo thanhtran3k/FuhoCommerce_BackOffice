@@ -21,7 +21,9 @@ namespace FuhoCommerce.Application.UseCases.CommentsUseCases.Query.GetCommentByP
         public async Task<CommentListVm> Handle(GetCommentByProductIdQuery request, CancellationToken cancellationToken)
         {
             var commentList = await _fuhoDbContext.Comments
+                .AsNoTracking()
                 .Where(x => x.ProductId == request.ProductId)
+                .OrderByDescending(x => x.CreateDate)
                 .Select(x => new CommentDto 
                 {
                     CommentId = x.CommentId,
@@ -29,7 +31,7 @@ namespace FuhoCommerce.Application.UseCases.CommentsUseCases.Query.GetCommentByP
                     IsEdit = x.IsEdit,
                     Rating = x.Rating,
                 })
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             var productListVm = new CommentListVm
             {

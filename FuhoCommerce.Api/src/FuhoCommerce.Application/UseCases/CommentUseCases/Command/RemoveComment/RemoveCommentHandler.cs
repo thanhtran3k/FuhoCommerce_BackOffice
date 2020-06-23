@@ -22,14 +22,12 @@ namespace FuhoCommerce.Application.UseCases.CommentUseCases.Command.RemoveCommen
         {
             var result = await _fuhoDbContext.Comments.FindAsync(request.CommentId);
 
-            if (result != null)
-            {
-                _fuhoDbContext.Comments.Remove(result);
-                await _fuhoDbContext.SaveChangesAsync(cancellationToken);
-            } else
-            {
-                throw new NullResult(nameof(Comment), nameof(request.CommentId));
-            }
+            if (result == null) throw new NullResult(nameof(Comment), nameof(request.CommentId));
+
+            if (request.UserId != result.CreatedBy) throw new ForbiddenAction(nameof(RemoveCommentCommand), request.UserId);
+
+            _fuhoDbContext.Comments.Remove(result);
+            await _fuhoDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

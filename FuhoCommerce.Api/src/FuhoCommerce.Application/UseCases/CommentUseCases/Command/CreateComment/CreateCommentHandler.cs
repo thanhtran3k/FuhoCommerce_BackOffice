@@ -1,4 +1,5 @@
 ﻿using FuhoCommerce.Application.Common.Interfaces;
+using FuhoCommerce.Application.UseCases.CommentUseCases.Query.GetCommentByProductId;
 using FuhoCommerce.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -24,22 +25,15 @@ namespace FuhoCommerce.Application.UseCases.CommentUseCases.Command.CreateCommen
         {
             try
             {
-                var product = _fuhoDbContext.Products.Where(x => x.ProductId == request.ProductId).ToList();
-
-                if (product.Any())
+                var newComment = new Comment()
                 {
-                    var newComment = new Comment()
-                    {
-                       Content = request.Content,
-                       ProductId = request.ProductId,
-                       IsEdit = false,
-                       Rating = request.Rating
-                    };
+                    ProductId = request.ProductId,
+                    Content = request.Content,
+                    Rating = request.Rating
+                };
 
-                    _fuhoDbContext.Comments.Add(newComment);
-
-                    await _fuhoDbContext.SaveChangesAsync(cancellationToken);
-                }
+                _fuhoDbContext.Comments.Add(newComment);
+                await _fuhoDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
