@@ -38,13 +38,13 @@ namespace Application.UnitTests.ProductTests.Queries
                 new ProductOption()
                 {
                     ProductOptionId = Guid.NewGuid(),
-                    Optionkey = "Color",
+                    OptionKey = "Color",
                     OptionValues = "Black, Product Red, White"
                 },
                 new ProductOption()
                 {
                     ProductOptionId = Guid.NewGuid(),
-                    Optionkey = "Capacity",
+                    OptionKey = "Capacity",
                     OptionValues = "64GB, 128GB"
                 }
             };

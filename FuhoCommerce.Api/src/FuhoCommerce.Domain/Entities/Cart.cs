@@ -8,6 +8,6 @@ namespace FuhoCommerce.Domain.Entities
     public class Cart : BaseEntity
     {
         public Guid CartId { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public string ListProduct { get; set; }
     }
 }

@@ -32,8 +32,9 @@ namespace FuhoCommerce.ApplicationApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand command)
         {
-            await Mediator.Send(command);
-            return Ok();
+            var result = await Mediator.Send(command);
+
+            return Ok(result);
         }
 
         [HttpPut("{id}")]

@@ -8,7 +8,6 @@
   <ItemGroup>
     <Folder Include="ExternalResource\ExternalApi\" />
     <Folder Include="ExternalResource\SMTP\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>

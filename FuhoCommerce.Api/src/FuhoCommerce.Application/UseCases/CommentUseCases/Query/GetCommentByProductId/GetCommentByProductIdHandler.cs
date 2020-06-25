@@ -31,6 +31,8 @@ namespace FuhoCommerce.Application.UseCases.CommentsUseCases.Query.GetCommentByP
                     IsEdit = x.IsEdit,
                     Rating = x.Rating,
                 })
+                .Skip((request.Page - 1) * request.PageSize)
+                .Take(request.PageSize)
                 .ToListAsync(cancellationToken);
 
             var productListVm = new CommentListVm
