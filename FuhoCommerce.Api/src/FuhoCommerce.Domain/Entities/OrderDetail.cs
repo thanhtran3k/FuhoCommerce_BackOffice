@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FuhoCommerce.Domain.Entities
 {
-    public class OrderDetail : BaseEntity
+    public class OrderDetail
     {
         public Guid OrderDetailId { get; set; }
         public Guid OrderId { get; set; }

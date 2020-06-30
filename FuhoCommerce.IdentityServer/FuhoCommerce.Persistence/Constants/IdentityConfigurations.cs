@@ -56,7 +56,7 @@ namespace FuhoCommerce.Persistence.Constants
                     PostLogoutRedirectUris = { "http://localhost:4200/home" },
                     AllowedCorsOrigins = { "http://localhost:4200" },
                     AllowAccessTokensViaBrowser = true,
-                    AccessTokenLifetime = 3600
+                    AccessTokenLifetime = 86400
                 },
 
                 //Hybrid Client needs ClientSecret, offline_access, scope, ResponseType = code id_token
@@ -75,7 +75,7 @@ namespace FuhoCommerce.Persistence.Constants
                     PostLogoutRedirectUris = {"https://localhost:5002/signout-callback-oidc"},
                     AllowOfflineAccess = true,
                     AllowAccessTokensViaBrowser = true,
-                    AccessTokenLifetime = 3600,
+                    AccessTokenLifetime = 86400,
                 },
             };
         }

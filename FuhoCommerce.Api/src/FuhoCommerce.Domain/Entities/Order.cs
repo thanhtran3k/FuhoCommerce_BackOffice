@@ -17,6 +17,7 @@ namespace FuhoCommerce.Domain.Entities
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
+        public bool IsCancelOrder { get; set; }
 
         public Shipper Shipper { get; set; }
         public OrderDetail OrderDetail { get; set; }

@@ -17,7 +17,6 @@ namespace FuhoCommerce.Application.UseCases.OrderUserCases.Command
     {
         public readonly IFuhoDbContext _fuhoDbContext;
         public readonly IMapper _mapper;
-        public readonly List<OrderDetail> listOrderDetail;
 
         public CreateOrderHandle(IFuhoDbContext fuhoDbContext, IMapper mapper)
         {
@@ -30,14 +29,17 @@ namespace FuhoCommerce.Application.UseCases.OrderUserCases.Command
             try
             {
                 // add order
-                var orderId = new Guid();
+                var listOrderDetail = new List<OrderDetail>();
+
+                var orderId = Guid.NewGuid();
                 var newOrder = new Order
                 {
                     OrderId = orderId,
                     ShipName = request.ShipName,
                     ShipAddress = request.ShipAddress,
                     ShipCity = request.ShipCity,
-                    ShipCountry = request.ShipCountry
+                    ShipCountry = request.ShipCountry,
+                    IsCancelOrder = false
                 };
 
                 // add order detail
@@ -45,6 +47,7 @@ namespace FuhoCommerce.Application.UseCases.OrderUserCases.Command
                 {
                     var newOrderDetail = new OrderDetail
                     {
+                        OrderDetailId = Guid.NewGuid(),
                         ProductId = item.ProductId,
                         OrderId = orderId,
                         UnitPrice = item.UnitPrice,
@@ -55,7 +58,7 @@ namespace FuhoCommerce.Application.UseCases.OrderUserCases.Command
                 }
 
 
-                _fuhoDbContext.Orders.AddRange(newOrder);
+                _fuhoDbContext.Orders.Add(newOrder);
                 _fuhoDbContext.OrderDetails.AddRange(listOrderDetail);
 
                 await _fuhoDbContext.SaveChangesAsync(cancellationToken);
@@ -70,7 +73,6 @@ namespace FuhoCommerce.Application.UseCases.OrderUserCases.Command
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

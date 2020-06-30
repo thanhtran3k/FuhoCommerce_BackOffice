@@ -22,4 +22,8 @@
     <ProjectReference Include="..\FuhoCommerce.Domain\FuhoCommerce.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\OrderUserCases\Command\RemoveOrder\" />
+  </ItemGroup>
+
 </Project>
