@@ -13,7 +13,7 @@ namespace FuhoCommerce.Application.UseCases.CommentsUseCases.Query.GetCommentByP
     {
         private readonly IFuhoDbContext _fuhoDbContext;
 
-        public GetCommentByProductIdHandler(IFuhoDbContext fuhoDbContext, IMapper mapper)
+        public GetCommentByProductIdHandler(IFuhoDbContext fuhoDbContext)
         {
             _fuhoDbContext = fuhoDbContext;
         }
@@ -35,12 +35,12 @@ namespace FuhoCommerce.Application.UseCases.CommentsUseCases.Query.GetCommentByP
                 .Take(request.PageSize)
                 .ToListAsync(cancellationToken);
 
-            var productListVm = new CommentListVm
+            var commentListVm = new CommentListVm
             {
                 CommentDtos = commentList
             };
 
-            return productListVm;
+            return commentListVm;
         }
     }
 }

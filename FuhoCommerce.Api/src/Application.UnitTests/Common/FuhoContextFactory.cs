@@ -4,8 +4,6 @@ using FuhoCommerce.Persistence.EFDbContext;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.UnitTests.Common
 {
