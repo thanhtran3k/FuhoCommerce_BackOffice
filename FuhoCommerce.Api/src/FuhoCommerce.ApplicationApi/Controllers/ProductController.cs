@@ -16,7 +16,7 @@ namespace FuhoCommerce.ApplicationApi.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<ProductListVm>> GetAllProducts([FromQuery] int page = 1, int pageSize = 1)
+        public async Task<ActionResult<ProductListVm>> GetAllProducts([FromQuery] int page, int pageSize)
         {
             var result = await Mediator.Send(new GetAllProductsQuery() { Page = page, PageSize = pageSize });
             return Ok(result);
