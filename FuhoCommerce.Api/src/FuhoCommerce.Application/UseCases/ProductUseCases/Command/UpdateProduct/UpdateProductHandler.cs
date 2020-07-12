@@ -41,7 +41,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduc
                 product.Stock = request.Stock;
                 product.CategoryId = request.CategoryId;
                 product.ProductOptions = request.ProductOptions;
-                product.Images = await _fileSystemService.SingleUpdate(request.file, product.Images);
+                product.Images = await _fileSystemService.SingleUpdate(request.File, product.Images);
 
                 _fuhoDbContext.Products.Update(product);
                 await _fuhoDbContext.SaveChangesAsync(cancellationToken);

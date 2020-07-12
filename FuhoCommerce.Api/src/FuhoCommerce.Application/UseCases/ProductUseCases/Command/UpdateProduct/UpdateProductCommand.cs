@@ -18,7 +18,7 @@ namespace FuhoCommerce.Application.UseCases.ProductUseCases.Command.UpdateProduc
         public decimal Price { get; set; }
         public string Sku { get; set; }
         public int Stock { get; set; }
-        public IFormFile file { get; set; }
+        public IFormFile File { get; set; }
 
         public ICollection<ProductOption> ProductOptions { get; set; }
     }

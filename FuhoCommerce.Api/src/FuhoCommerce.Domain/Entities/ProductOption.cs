@@ -8,7 +8,7 @@ namespace FuhoCommerce.Domain.Entities
     public class ProductOption : BaseEntity
     {
         public Guid ProductOptionId { get; set; }
-        public string Optionkey { get; set; }
+        public string OptionKey { get; set; }
         public string OptionValues { get; set; }
 
         public Guid ProductId { get; set; }

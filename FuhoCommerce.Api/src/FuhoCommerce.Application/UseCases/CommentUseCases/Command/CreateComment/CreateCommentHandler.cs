@@ -1,12 +1,7 @@
 ﻿using FuhoCommerce.Application.Common.Interfaces;
-using FuhoCommerce.Application.UseCases.CommentUseCases.Query.GetCommentByProductId;
 using FuhoCommerce.Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

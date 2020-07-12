@@ -14,7 +14,7 @@ namespace FuhoCommerce.Infrastructure.ExternalResource.FileSystem
     {
         private readonly IHostingEnvironment _hostingEnvironment;
         private const string NoImage = "no-image.jpg";
-        private readonly string[] permittedExtensions = { ".jpg", "png", ".jpeg" };
+        private readonly string[] permittedExtensions = { "jpg", "png", "jpeg" };
 
         public FileSystemService(IHostingEnvironment hostingEnvironment)
         {
@@ -34,7 +34,7 @@ namespace FuhoCommerce.Infrastructure.ExternalResource.FileSystem
 
         public async Task<string> SingleUpload(IFormFile file)
         {
-            if (file != null && IsValid(file).Result && file.Length > 0)
+            if (file != null && await IsValid(file) && file.Length > 0)
             {
                 return await ProcessUploading(file);
             }
@@ -46,7 +46,7 @@ namespace FuhoCommerce.Infrastructure.ExternalResource.FileSystem
 
         public async Task<string> SingleUpdate(IFormFile file, string previousImage)
         {
-            if (file != null && IsValid(file).Result && file.Length > 0)
+            if (file != null && await IsValid(file) && file.Length > 0)
             {
                 return await ProcessUploading(file);
             }
@@ -76,7 +76,9 @@ namespace FuhoCommerce.Infrastructure.ExternalResource.FileSystem
         private async Task<bool> IsValid(IFormFile file)
         {
             var extension = Path.GetExtension(file.FileName);
-            if (!permittedExtensions.Contains(extension.ToLower()))
+            var dotCount = file.FileName.Count(x => x == '.');
+            if (!permittedExtensions.Contains(extension.ToLower()) 
+                && dotCount > 1)
             {
                 return false;
             }

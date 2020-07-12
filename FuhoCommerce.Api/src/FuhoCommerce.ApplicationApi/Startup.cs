@@ -1,4 +1,6 @@
+using AutoMapper;
 using FuhoCommerce.Application.Common.Interfaces;
+using FuhoCommerce.Application.Common.Mappings;
 using FuhoCommerce.Application.DependencyInjection;
 using FuhoCommerce.ApplicationApi.Services;
 using FuhoCommerce.HttpUtility;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 
@@ -121,6 +124,9 @@ namespace FuhoCommerce.ApplicationApi
                 securityRequirement.Add(securitySchema, new[] { "Bearer" });
                 c.AddSecurityRequirement(securityRequirement);
             });
+
+            // Register auto mapper
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingConfiguration)));
 
             _services = services;
         }

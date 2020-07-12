@@ -17,6 +17,10 @@ namespace FuhoCommerce.Persistence.Configurations
             builder.HasOne(x => x.Shipper)
                 .WithOne(x => x.Order)
                 .HasForeignKey<Order>(x => x.OrderId);
+
+            builder.HasOne(x => x.OrderDetail)
+                .WithOne(x => x.Order)
+                .HasForeignKey<Order>(x => x.OrderId);
         }
     }
 }

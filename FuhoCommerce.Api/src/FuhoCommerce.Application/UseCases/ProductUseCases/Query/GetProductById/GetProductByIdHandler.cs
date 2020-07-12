@@ -1,9 +1,7 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FuhoCommerce.Application.Common.Exceptions;
 using FuhoCommerce.Application.Common.Interfaces;
-using FuhoCommerce.Application.UseCases.ProductUseCases.Query.GetAllProducts;
 using FuhoCommerce.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
